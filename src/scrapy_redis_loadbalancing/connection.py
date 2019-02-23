@@ -87,4 +87,4 @@ def get_redis(**kwargs):
         return redis_cls.from_url(url, **kwargs)
     else:
         return redis_cls(**kwargs)
-#        return redis_cls(host="172.20.10.5",**kwargs)
+#        return redis_cls(host="127.0.0.1",**kwargs)

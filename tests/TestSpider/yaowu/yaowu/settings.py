@@ -3,9 +3,10 @@ SPIDER_MODULES = ['yaowu.spiders']
 NEWSPIDER_MODULE = 'yaowu.spiders'
 
 SCHEDULER = "scrapy_redis_loadbalancing.scheduler.Scheduler"
-#DUPEFILTER_CLASS = "scrapy_redis_loadbalancing.dupefilter.RFPDupeFilter"
-DUPEFILTER_CLASS = "scrapy_redis_loadbalancing.dupefilterbloom.BloomDupeFilter"
-SCHEDULER_QUEUE_CLASS = 'scrapy_redis_loadbalancing.queues.FifoQueue'
+DUPEFILTER_CLASS = "scrapy_redis_loadbalancing.dupefilter.RFPDupeFilter" # 启动 scrapy-redis 的方案
+#SCHEDULER_QUEUE_CLASS = 'scrapy_redis_loadbalancing.queues.FifoQueue' # 启动 scrapy-redis 的方案
+#DUPEFILTER_CLASS = "scrapy_redis_loadbalancing.dupefilterbloom.BloomDupeFilter" # 启动 scrapy-redis-loadbalancing 改进方案
+SCHEDULER_QUEUE_CLASS = 'scrapy_redis_loadbalancing.smartqueue.SmartQueue' # 启动 scrapy-redis-loadbalancing 改进方案
 ROBOTSTXT_OBEY = False
 CONCURRENT_REQUESTS = 8
 

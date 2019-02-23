@@ -23,8 +23,8 @@ def read_requirements(filename):
 setup(
     name='scrapy-redis-loadbalancing',
     version=read_file('VERSION'),
-    description="Distributed dynamic load balancing for scrapy",
-    long_description="Expansion component of distributed dynamic load balancing base on Redis and Zookeeper for scrapy",
+    description="Distributed dynamic load balancing for Scrapy",
+    long_description="Expansion component of distributed dynamic load balancing base on Redis and Zookeeper for Scrapy",
     author="BiarFordlander",
     author_email='BiarFordlander@gmail.com',
     url='https://github.com/Echoshoot/scrapy-redis-loadbalancing',

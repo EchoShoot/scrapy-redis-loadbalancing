@@ -63,13 +63,16 @@ class Monitor(QObject):
             result = result.decode('utf-8')
             if result:
                 result = json.loads(result)
-                loss_balacing.append(result.get('localload'))
-                xxx.update(result)
+                loss_balacing.append(result.get('localload'))  # 负载量 localload 累积起来
+                xxx.update(result)  # Counter 的 update 是累加的
                 result['node_name'] = host.urn
                 self.Changed.emit(result)
         else:
             xxx['node_counts'] = len(self.hosts)
-            xxx['loss_balacing'] = 0 if len(loss_balacing) < 2 else statistics.stdev(loss_balacing)
+            xxx['memoryusage'] /= len(self.hosts)  # 内存占用取平均值
+            xxx['optimize_filter'] /= len(self.hosts)  # 去重优化率取平均值
+            xxx['optimize_queue'] /= len(self.hosts)  # 队列优化率取平均值
+            xxx['loss_balacing'] = 0 if len(loss_balacing) < 2 else statistics.stdev(loss_balacing) # 负载失衡为负载量取方差
             self.Totaled.emit(xxx)
             self.file.write(json.dumps(xxx)+',')  # 存入文件中
             self.file.flush()

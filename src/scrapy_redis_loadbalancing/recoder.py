@@ -224,8 +224,8 @@ class SlotStats(ClusterState):
             'tps_download': tps_download // 1024,  # 转换成KB为单位
             'localload': length_queue / tps_page if tps_page else 0,  # 本地负载量
             'memoryusage': memoryusage / 1024 / 1024,  # MB 内存使用量
-            'optimize_filter': (buerfilter - bloomfilter) / buerfilter if buerfilter else 0,  # (本来访问数量-实际访问数量)/本来访问数量
-            'optimize_queue': (smartqueue - remotequeue) / smartqueue if smartqueue else 0,  # (本来访问数量-实际访问数量)/本来访问数量
+            'optimize_filter': (buerfilter - bloomfilter) / buerfilter if buerfilter else 0,  # (本地访问数量-远端访问数量)/本地访问数量
+            'optimize_queue': (smartqueue - remotequeue) / smartqueue if smartqueue else 0,  # (本地访问数量-远端访问数量)/本地访问数量
         }
 
         self.submit_status(data)

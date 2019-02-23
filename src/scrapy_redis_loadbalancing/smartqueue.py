@@ -186,7 +186,7 @@ class SmartQueue(object):
         amount = amount if math.fabs(amount) < limit else limit * amount / math.fabs(amount)
         requests = []
         logger.info(Color.cyan('tranfer:{}'.format(amount)))
-        if amount > 0:  # 至少有10个吧!
+        if amount > 0:
             try:
                 for _ in range(int(amount)):  # 将 amount 任务装入 requests 中
                     request = self.lqueue.pop()
@@ -199,7 +199,7 @@ class SmartQueue(object):
                     self.rqueue.push(requests)  # 没有出错就放到远端
         elif amount < 0:
             try:
-                requests = self.rqueue.pop(amount=int(math.fabs(amount)))  # 如果小于 20 从远端拿取
+                requests = self.rqueue.pop(amount=int(math.fabs(amount)))
             except Exception:
                 if requests:
                     self.rqueue.push(requests)  # 如果错了什么问题,就把任务放回去
